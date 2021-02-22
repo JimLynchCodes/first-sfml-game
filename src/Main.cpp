@@ -1,5 +1,27 @@
 #include "Platform/Platform.hpp"
 
+void handleKeyboardInput(sf::Keyboard::Key key, sf::CircleShape shape)
+{
+	sf::Vector2f playerPosition = shape.getPosition();
+
+	int speed = 100;
+
+	if (key == 73)
+	{
+		shape.setPosition(playerPosition.x, playerPosition.y + speed);
+		std::cout << "pressed Up" << std::endl;
+	}
+
+	if (key == 74)
+		std::cout << "pressed Down" << std::endl;
+
+	if (key == 72)
+		std::cout << "pressed Right" << std::endl;
+
+	if (key == 71)
+		std::cout << "pressed Left" << std::endl;
+}
+
 int main()
 {
 	util::Platform platform;
@@ -30,6 +52,9 @@ int main()
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
+
+			if (event.type == sf::Event::KeyPressed)
+				handleKeyboardInput(event.key.code, shape);
 		}
 
 		window.clear();
